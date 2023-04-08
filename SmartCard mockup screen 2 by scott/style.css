@@ -1,0 +1,70 @@
+
+
+html, body {
+text-align: center;
+}
+p {text-align: left;}
+
+*
+{
+  margin: 0 auto 0 auto;
+ text-align:left;}
+
+
+html, body {
+text-align: center;
+}
+p {text-align: left;}
+
+#header ul {
+	padding: 0px;
+	list-style-type: none;
+	height:21px;
+	text-align:center;
+	height:85px;
+	overflow:hidden;
+}
+
+
+#header ul li a:hover{
+color:#CCCCCC;
+}
+
+
+
+#main 
+{
+margin-top:10px;
+margin-bottom:10px;
+}
+
+
+
+
+
+
+#main .main_body p
+{
+line-height:19px;
+letter-spacing:1px;
+padding-bottom:15px;
+padding-left:20px;
+padding-right:20px;
+}
+
+
+#page
+{
+  margin: 0 auto 0 auto; 
+  margin-top:25px;
+  display: block; 
+  height:auto;
+  position: relative; 
+  overflow: hidden; 
+  width: 921px;
+}
+
+
+
+
+
