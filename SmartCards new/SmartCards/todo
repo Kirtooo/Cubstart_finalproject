@@ -1,5 +1,0 @@
-Create a Google Cloud Platform project and enable the Google Authentication API.
-Set up the appropriate credentials for project and configure Passport.js to use them.
-Deploy website to a server or hosting service.
-Customize the design of website and add any additional features needed.
-Test and debug website to ensure that it works correctly.
