@@ -34,7 +34,8 @@ section {
     justify-content: center;
     text-align: center;
     cursor: pointer;
-}
+    font-size: x-large;
+    }
 
 .flashcard-set {
     border: 4px solid #000000;
@@ -92,33 +93,38 @@ section {
     display: none;
 }
 .flashcard-set:hover {
-    background-color: rgb(231, 231, 231);
+    background-color: white;
     border: 4px solid #1abc9c;
     color: black;
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
 .new-set:hover {
-    background-color: rgb(231, 231, 231);
+    background-color: white;
     border: 4px solid #1abc9c;
     color: black;
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
 .study:hover {
-    background-color: rgb(231, 231, 231);
+    background-color: white;
     border: 4px solid #1abc9c;
     color: black;
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
 .term:hover {
-    background-color: rgb(231, 231, 231);
+    background-color: white;
     border: 4px solid #1abc9c;
     color: black;
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
 .definition:hover {
-    background-color: rgb(231, 231, 231);
+    background-color: white;
     border: 4px solid #1abc9c;
     color: black;
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
 a {
@@ -146,8 +152,34 @@ h1.title a {
     display: flex;
     justify-content: center;
     margin-top: 50px;
-  }
+}
   
 .button button {
     margin: 0 10px;
+}
+
+.form {
+    text-align: center;
+    font-family: 'Copperplate', fantasy;
+    font-size: x-large;
+}
+
+.check {
+    font-family: 'Copperplate', fantasy;
+    font-size: x-large;
+}
+
+.next {
+    font-family: 'Copperplate', fantasy;
+    font-size: x-large;
+}
+
+.subsec {
+    font-family: 'Copperplate', fantasy;
+    font-size: 45px;
+}
+
+.cap {
+    font-family: 'Copperplate', fantasy;
+    font-size: 30px;
 }
