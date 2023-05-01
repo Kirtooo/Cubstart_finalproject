@@ -3,6 +3,8 @@ body {
     max-width: auto;
     color: #1d3557;
     font-family: 'Oswald', sans-serif;
+    align-items: center;
+    
 }
 
 section {
@@ -158,6 +160,13 @@ h1.title a {
     margin: 0 10px;
 }
 
+.check-fc {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: x-large;
+}
+
 .form {
     text-align: center;
     font-family: 'Copperplate', fantasy;
@@ -182,4 +191,64 @@ h1.title a {
 .cap {
     font-family: 'Copperplate', fantasy;
     font-size: 30px;
+}
+
+
+.wrapper {
+    height: 100px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.time-butts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper .time span{
+    width: 100px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 300;
+}
+
+.time span.colon{
+    width: 10px;
+}
+
+.time span.ms-colon,
+.time span.millisecond{
+    color: #1abc9c;
+}
+
+.buttons{
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.time-butts button{
+    padding: 6px 16px;
+    outline: none;
+    border: none;
+    margin: 0 5px;
+    color: #fff;
+    background: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 4px;
+    background-color: #1abc9c;
+    cursor: pointer;
+}
+
+.buttons button.active,
+.buttons button.stopActive{
+    pointer-events: none;
+    opacity: 0.8;
 }

@@ -5,6 +5,10 @@ const nextButton = document.querySelector('.next');
 const termInput = document.querySelector('#term-input');
 const definitionInput = document.querySelector('#definition-input');
 const addButton = document.querySelector('#add-button');
+const fccheckButton = document.querySelector('.check-fc');
+const startBtn = document.querySelector(".start"),
+  stopBtn = document.querySelector(".stop"),
+  resetBtn = document.querySelector(".reset");
 
 const activeFlashcards = {Scott: "Osgard", Alan: 'Chen', Leo: 'Yuan', Justin: 'Williams'}
 let data = Object.entries(activeFlashcards);
@@ -27,7 +31,12 @@ checkButton.addEventListener('click', function() {
     term.innerHTML = definition.innerHTML;
     definition.innerHTML = temp;
   });
-  
+
+  fccheckButton.addEventListener('click', function() {
+    const temp = term.innerHTML;
+    term.innerHTML = definition.innerHTML;
+    definition.innerHTML = temp;
+  });
 
 nextButton.addEventListener('click', function() {
   randomIndex = Math.floor(Math.random() * data.length);
@@ -46,27 +55,57 @@ addButton.addEventListener('click', function() {
       definitionInput.value = '';
     }
   });
-  function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10)
-        seconds = parseInt(timer % 60, 10);
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.textContent = minutes + ":" + seconds;
+let hr = min = sec = ms = "0" + 0,
+  startTimer;
 
-        if (--timer < 0) {
-            timer = 0;
-            // timer = duration; // uncomment this line to reset timer automatically after reaching 0
-        }
-    }, 1000);
+
+startBtn.addEventListener("click", start);
+stopBtn.addEventListener("click", stops);
+resetBtn.addEventListener("click", reset);
+
+function start() {
+  startBtn.classList.add("active");
+  stopBtn.classList.remove("stopActive");
+
+  startTimer = setInterval(()=>{
+    ms++;
+    ms = ms < 10 ? "00" + ms : ms;
+
+    if(ms == 100){
+      sec++;
+      sec = sec < 10 ? "0" + sec : sec;
+      ms = "0" + 0;
+    }
+    if(sec == 60){
+      min++;
+      min = min < 10 ? "0" + min : min;
+      sec = "0" + 0;
+    }
+
+    putValue();
+  },10); //1000ms = 1s
+
 }
 
-window.onload = function () {
-    var time = 60 / 2, // your time in seconds here
-        display = document.querySelector('#timer-display');
-    startTimer(time, display);
-};
 
+function stops() {
+  startBtn.classList.remove("active");
+  stopBtn.classList.add("stopActive");
+  clearInterval(startTimer);
+}
+
+function reset() {
+  startBtn.classList.remove("active");
+  stopBtn.classList.remove("stopActive");
+  clearInterval(startTimer);
+  hr = min = sec = ms = "0" + 0,
+  putValue();
+}
+
+function putValue() {
+  document.querySelector(".millisecond").innerText = ms;
+  document.querySelector(".second").innerText = sec;
+  document.querySelector(".minute").innerText = min;
+}
