@@ -271,3 +271,8 @@ h1.title a {
     pointer-events: none;
     opacity: 0.8;
 }
+
+.act {
+    font-family: 'Copperplate', fantasy;
+    font-size: 30px;
+}
