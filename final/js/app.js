@@ -10,7 +10,12 @@ const startBtn = document.querySelector(".start"),
   stopBtn = document.querySelector(".stop"),
   resetBtn = document.querySelector(".reset");
 
-const activeFlashcards = {Scott: "Osgard", Alan: 'Chen', Leo: 'Yuan', Justin: 'Williams'}
+// const activeFlashcards = {Scott: "Osgard", Alan: 'Chen', Leo: 'Yuan', Justin: 'Williams'}
+const activeSet = localStorage.getItem("activated");
+console.log(activeSet);
+let thisSet = JSON.parse(localStorage.getItem(activeSet));
+const activeFlashcards = thisSet.content;
+console.log(activeFlashcards);
 let data = Object.entries(activeFlashcards);
 let randomIndex = Math.floor(Math.random() * data.length);
 let randomTerm = data[randomIndex][0];
@@ -53,6 +58,11 @@ addButton.addEventListener('click', function() {
       data = Object.entries(activeFlashcards);
       termInput.value = '';
       definitionInput.value = '';
+      thisSet.content = activeFlashcards;
+      thisSet.setName = activeSet;
+      setSerialized = JSON.stringify(thisSet);
+      console.log(thisSet);
+      localStorage.setItem(activeSet, setSerialized);
     }
   });
 
