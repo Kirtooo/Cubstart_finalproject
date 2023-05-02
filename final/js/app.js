@@ -6,16 +6,13 @@ const termInput = document.querySelector('#term-input');
 const definitionInput = document.querySelector('#definition-input');
 const addButton = document.querySelector('#add-button');
 const fccheckButton = document.querySelector('.check-fc');
-const startBtn = document.querySelector(".start"),
-  stopBtn = document.querySelector(".stop"),
-  resetBtn = document.querySelector(".reset");
+const startBtn = document.querySelector(".start");
+const stopBtn = document.querySelector(".stop");
+const resetBtn = document.querySelector(".reset");
 
-// const activeFlashcards = {Scott: "Osgard", Alan: 'Chen', Leo: 'Yuan', Justin: 'Williams'}
-const activeSet = localStorage.getItem("activated");
-console.log(activeSet);
+let activeSet = localStorage.getItem("activated");
 let thisSet = JSON.parse(localStorage.getItem(activeSet));
-const activeFlashcards = thisSet.content;
-console.log(activeFlashcards);
+let activeFlashcards = thisSet.content;
 let data = Object.entries(activeFlashcards);
 let randomIndex = Math.floor(Math.random() * data.length);
 let randomTerm = data[randomIndex][0];
@@ -30,18 +27,19 @@ function getRandomFlashcard() {
   definition.innerHTML = randomDefinition;
 }
 
-
 checkButton.addEventListener('click', function() {
-    const temp = term.innerHTML;
-    term.innerHTML = definition.innerHTML;
-    definition.innerHTML = temp;
-  });
+  const temp = term.innerHTML;
+  term.innerHTML = definition.innerHTML;
+  definition.innerHTML = temp;
+  stops();
+});
 
-  fccheckButton.addEventListener('click', function() {
-    const temp = term.innerHTML;
-    term.innerHTML = definition.innerHTML;
-    definition.innerHTML = temp;
-  });
+fccheckButton.addEventListener('click', function() {
+  const temp = term.innerHTML;
+  term.innerHTML = definition.innerHTML;
+  definition.innerHTML = temp;
+  stops();
+});
 
 nextButton.addEventListener('click', function() {
   randomIndex = Math.floor(Math.random() * data.length);
@@ -49,31 +47,28 @@ nextButton.addEventListener('click', function() {
   randomDefinition = data[randomIndex][1];
   term.innerHTML = randomTerm;
   definition.innerHTML = randomDefinition;
+  reset();
+  start();
 });
-addButton.addEventListener('click', function() {
-    const newTerm = termInput.value.trim();
-    const newDefinition = definitionInput.value.trim();
-    if (newTerm !== '' && newDefinition !== '') {
-      activeFlashcards[newTerm] = newDefinition;
-      data = Object.entries(activeFlashcards);
-      termInput.value = '';
-      definitionInput.value = '';
-      thisSet.content = activeFlashcards;
-      thisSet.setName = activeSet;
-      setSerialized = JSON.stringify(thisSet);
-      console.log(thisSet);
-      localStorage.setItem(activeSet, setSerialized);
-    }
-  });
 
+addButton.addEventListener('click', function() {
+  const newTerm = termInput.value.trim();
+  const newDefinition = definitionInput.value.trim();
+  if (newTerm !== '' && newDefinition !== '') {
+    activeFlashcards[newTerm] = newDefinition;
+    data = Object.entries(activeFlashcards);
+    termInput.value = '';
+    definitionInput.value = '';
+    thisSet.content = activeFlashcards;
+    thisSet.setName = activeSet;
+    setSerialized = JSON.stringify(thisSet);
+    console.log(thisSet);
+    localStorage.setItem(activeSet, setSerialized);
+  }
+});
 
 let hr = min = sec = ms = "0" + 0,
   startTimer;
-
-
-startBtn.addEventListener("click", start);
-stopBtn.addEventListener("click", stops);
-resetBtn.addEventListener("click", reset);
 
 function start() {
   startBtn.classList.add("active");
@@ -96,9 +91,7 @@ function start() {
 
     putValue();
   },10); //1000ms = 1s
-
 }
-
 
 function stops() {
   startBtn.classList.remove("active");
@@ -110,7 +103,7 @@ function reset() {
   startBtn.classList.remove("active");
   stopBtn.classList.remove("stopActive");
   clearInterval(startTimer);
-  hr = min = sec = ms = "0" + 0,
+  hr = min = sec = ms = "0" + 0;
   putValue();
 }
 
